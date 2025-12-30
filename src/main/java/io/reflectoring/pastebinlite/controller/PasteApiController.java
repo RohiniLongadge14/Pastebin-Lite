@@ -57,10 +57,14 @@ public class PasteApiController {
 
         repository.save(paste);
 
-        return ResponseEntity.ok(Map.of(
-                "id", paste.getId(),
-                "url", "/p/" + paste.getId()
-        ));
+        return ResponseEntity
+                .ok()
+                .header("Content-Type", "application/json")
+                .body(Map.of(
+                    "id", paste.getId(),
+                    "url", "/p/" + paste.getId()
+                ));
+
     }
 
     @GetMapping("/api/pastes/{id}")

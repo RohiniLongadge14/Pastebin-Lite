@@ -9,12 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class RootController {
 
 	 @GetMapping("/")
-	    public Map<String, String> home() {
-	        return Map.of(
-	            "message", "Pastebin Lite Backend is running",
-	            "status", "OK",
-	            "health", "/api/healthz"
-	        );
+	    public String home() {
+	        return "Pastebin Lite Backend is running";
 	    }
 	 
 }

@@ -5,39 +5,42 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.reflectoring.pastebinlite.dto.PasteRequest;
 import io.reflectoring.pastebinlite.entity.Paste;
 import io.reflectoring.pastebinlite.repository.PasteRepository;
 import io.reflectoring.pastebinlite.service.PasteService;
 import io.reflectoring.pastebinlite.util.TimeProvider;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/api/pastes")
+@CrossOrigin(
+    origins = {
+        "http://localhost:3000",
+        "https://pastebin-lite-frontend-hkz7jopzg-rohinis-projects-c95122e8.vercel.app"
+    },
+    allowedHeaders = "*",
+    methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS}
+)
 public class PasteApiController {
 
     private final PasteRepository repository;
     private final PasteService service;
     private final TimeProvider timeProvider;
 
-    public PasteApiController(PasteRepository repository,
-                              PasteService service,
-                              TimeProvider timeProvider) {
+    public PasteApiController(
+            PasteRepository repository,
+            PasteService service,
+            TimeProvider timeProvider
+    ) {
         this.repository = repository;
         this.service = service;
         this.timeProvider = timeProvider;
     }
 
-    // ✅ CREATE PASTE
-    @PostMapping
+    @PostMapping("/api/pastes")
     public ResponseEntity<?> createPaste(@RequestBody PasteRequest request) {
 
         if (request.getContent() == null || request.getContent().isBlank()) {
@@ -52,12 +55,6 @@ public class PasteApiController {
         paste.setCreatedAt(Instant.now());
         paste.setMaxViews(request.getMaxViews());
 
-        if (request.getTtlSeconds() != null) {
-            paste.setExpiresAt(
-                Instant.now().plusSeconds(request.getTtlSeconds())
-            );
-        }
-
         repository.save(paste);
 
         return ResponseEntity.ok(
@@ -68,35 +65,21 @@ public class PasteApiController {
         );
     }
 
-    // ✅ FETCH PASTE (API)
-    @GetMapping("/{id}")
-    public ResponseEntity<?> fetchPaste(@PathVariable String id,
-                                        HttpServletRequest request) {
-
+    @GetMapping("/api/pastes/{id}")
+    public ResponseEntity<?> fetchPaste(
+            @PathVariable String id,
+            HttpServletRequest request
+    ) {
         try {
             Instant now = timeProvider.now(request);
             Paste paste = service.getPaste(id, now);
 
             return ResponseEntity.ok(
-                Map.of(
-                    "content", paste.getContent(),
-                    "remaining_views",
-                    paste.getMaxViews() == null
-                        ? null
-                        : paste.getMaxViews() - paste.getViews(),
-                    "expires_at", paste.getExpiresAt()
-                )
+                Map.of("content", paste.getContent())
             );
-
         } catch (Exception e) {
             return ResponseEntity.status(404)
                     .body(Map.of("error", "Not found"));
         }
-    }
-
-    // ✅ VERY IMPORTANT: CORS PREFLIGHT (FIXES YOUR ERROR)
-    @RequestMapping(method = RequestMethod.OPTIONS)
-    public ResponseEntity<?> handleOptions() {
-        return ResponseEntity.ok().build();
     }
 }

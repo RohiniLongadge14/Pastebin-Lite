@@ -1,6 +1,35 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Pastebin Lite</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f1f5f9;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .content-box {
+            max-width: 800px;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            font-size: 20px;
+            font-weight: bold;   /* ✅ BOLD TEXT */
+            color: #1f2937;
+            text-align: center;  /* ✅ CENTER TEXT */
+            white-space: pre-wrap; /* preserve line breaks */
+        }
+    </style>
+</head>
 <body>
-<pre th:text="${content}"></pre>
+    <div class="content-box">
+        [[${content}]]
+    </div>
 </body>
 </html>

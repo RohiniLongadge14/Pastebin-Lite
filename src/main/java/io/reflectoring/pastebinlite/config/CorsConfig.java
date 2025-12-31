@@ -38,7 +38,8 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         // Set the specific origin of your Vercel frontend deployment URL here
-        configuration.setAllowedOrigins(List.of("https://pastebin-lite-frontend-hkz7jopzg-rohinis-projects-c95122e8.vercel.app")); // Replace with your actual Vercel URL
+        configuration.setAllowedOrigins(Arrays.asList("https://pastebin-lite-frontend-hkz7jopzg-rohinis-projects-c95122e8.vercel.app", "http://localhost:3000"));
+        //configuration.setAllowedOrigins(List.of("https://pastebin-lite-frontend-hkz7jopzg-rohinis-projects-c95122e8.vercel.app")); // Replace with your actual Vercel URL
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Make sure OPTIONS is included
         configuration.setAllowedHeaders(List.of("*")); // Allows all headers
         configuration.setAllowCredentials(true); // If you use cookies or authorization headers

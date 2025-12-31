@@ -32,8 +32,7 @@ public class CorsConfig {
 
         // ✅ Allow your Vercel frontend
         config.setAllowedOrigins(List.of(
-                "https://pastebin-lite-frontend-ssbhcxudh-rohinis-projects-c95122e8.vercel.app",
-                "https://pastebin-lite-frontend-82j0i7l6e-rohinis-projects-c95122e8.vercel.app"
+        		"https://pastebin-lite-frontend-hkz7jopzg-rohinis-projects-c95122e8.vercel.app"
         ));
 
         // ✅ Required methods
@@ -43,7 +42,7 @@ public class CorsConfig {
 
         // ✅ Required headers
         config.setAllowedHeaders(List.of(
-                "Content-Type", "Authorization"
+                "Content-Type"
         ));
 
         // ✅ Expose JSON

@@ -16,14 +16,12 @@ import io.reflectoring.pastebinlite.util.TimeProvider;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
-@CrossOrigin(
-    origins = {
-        "http://localhost:3000",
-        "https://pastebin-lite-frontend-hkz7jopzg-rohinis-projects-c95122e8.vercel.app"
-    },
-    allowedHeaders = "*",
-    methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS}
-)
+/*
+ * @CrossOrigin( origins = { "http://localhost:3000",
+ * "https://pastebin-lite-frontend-hkz7jopzg-rohinis-projects-c95122e8.vercel.app"
+ * }, allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST,
+ * RequestMethod.OPTIONS} )
+ */
 public class PasteApiController {
 
     private final PasteRepository repository;

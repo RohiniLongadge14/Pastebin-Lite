@@ -16,38 +16,55 @@ This project allows users to create and share text snippets (pastes) instantly. 
 The application is designed following industry-standard backend development practices using Spring Boot, Spring Data JPA, Hibernate, and RESTful APIs.
 
 ✨ Features
+
 📌 Paste Creation
 Create and store text snippets securely.
 Generate unique URLs for each paste.
 Support for large text content.
+
+
 ⏳ Time-Based Expiration (TTL)
 Configure paste expiration after a specific duration.
 Automatically invalidate and remove expired pastes.
 Prevent access to expired content.
+
+
 👁️ View-Based Expiration
 Define the maximum number of views allowed.
 Automatically delete or disable access once the view limit is reached.
 Useful for sharing sensitive information.
+
+
 💾 Persistent Storage
 Store paste data in a relational database.
 Ensure data persistence across application restarts.
 Maintain paste metadata such as creation time, expiration settings, and view count.
+
+
 🔍 Paste Retrieval
 Access pastes through unique URLs.
 Track remaining views.
 Validate expiration conditions before displaying content.
+
+
 ⚡ RESTful API Architecture
 Clean REST endpoints for creating and retrieving pastes.
 JSON-based request and response handling.
 Easy integration with frontend applications.
+
+
 🛡️ Exception Handling
 Centralized exception management.
 Meaningful error responses for invalid or expired pastes.
 Improved API reliability and user experience.
+
+
 📊 Metadata Management
 Creation timestamp tracking.
 Remaining view count tracking.
 Expiration status monitoring.
+
+
 🏗️ Tech Stack
 Technology	Purpose
 Java 17	Programming Language
@@ -58,6 +75,8 @@ MySQL/PostgreSQL	Database
 Maven	Dependency Management
 Lombok	Boilerplate Code Reduction
 REST API	Communication Layer
+
+
 📂 Project Architecture
 src/main/java
 │
@@ -79,6 +98,8 @@ src/main/java
 │
 └── config
     └── ApplicationConfig
+
+    
 🔄 Workflow
 Creating a Paste
 User submits text content.
@@ -90,15 +111,23 @@ Paste is stored in the database.
 Unique shareable URL is returned.
 Accessing a Paste
 User opens the generated URL.
+
+
 System checks:
 Whether the paste exists.
 Whether TTL has expired.
 Whether the view limit is exceeded.
+
+
 If valid:
 Display content.
 Increment view count.
+
+
 If invalid:
 Return appropriate error response.
+
+
 📌 Sample API Endpoints
 Create Paste
 POST /api/pastes
@@ -126,6 +155,8 @@ Response:
   "content": "Hello World!",
   "remainingViews": 9
 }
+
+
 🔒 Security Considerations
 Unique random paste identifiers.
 Validation of input data.
@@ -146,6 +177,8 @@ View Count Tracking
 Service Layer Architecture
 Clean Code Principles
 Backend System Design
+
+
 🌟 Future Enhancements
 User Authentication & Authorization
 Password-Protected Pastes
@@ -156,6 +189,9 @@ Paste Editing and Versioning
 Scheduled Cleanup Jobs
 Redis Caching for Performance Optimization
 Docker & Kubernetes Deployment
+
+
+
 📜 Conclusion
 
 The PasteBin Clone is a robust backend application that showcases modern Spring Boot development practices. By combining time-based expiration, view-based access control, and persistent storage, it provides a secure and efficient platform for temporary text sharing while serving as an excellent learning project for backend developers.

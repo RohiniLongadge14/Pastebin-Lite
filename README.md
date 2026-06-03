@@ -188,7 +188,7 @@ File Upload Support
 Paste Editing and Versioning
 Scheduled Cleanup Jobs
 Redis Caching for Performance Optimization
-Docker & Kubernetes Deployment
+
 
 
 

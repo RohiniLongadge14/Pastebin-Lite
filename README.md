@@ -76,29 +76,6 @@ Maven	Dependency Management
 Lombok	Boilerplate Code Reduction
 REST API	Communication Layer
 
-
-📂 Project Architecture
-src/main/java
-│
-├── controller
-│   └── PasteController
-│
-├── service
-│   └── PasteService
-│
-├── repository
-│   └── PasteRepository
-│
-├── entity
-│   └── Paste
-│
-├── exception
-│   ├── ResourceNotFoundException
-│   └── GlobalExceptionHandler
-│
-└── config
-    └── ApplicationConfig
-
     
 🔄 Workflow
 Creating a Paste

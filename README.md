@@ -173,5 +173,8 @@ Redis Caching for Performance Optimization
 
 The PasteBin Clone is a robust backend application that showcases modern Spring Boot development practices. By combining time-based expiration, view-based access control, and persistent storage, it provides a secure and efficient platform for temporary text sharing while serving as an excellent learning project for backend developers.
 
+
+
+
 ## Author
 Rohini Anilrao Longadge

@@ -177,4 +177,4 @@ The PasteBin Clone is a robust backend application that showcases modern Spring 
 
 
 ## Author
-Rohini Anilrao Longadge
+Rohini Longadge
